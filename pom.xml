@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.3.3</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.fabiokaz</groupId>
+	<artifactId>Desafio-Pratico-Aws-reStart-Generation</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Desafio-Pratico-Aws-reStart-Generation</name>
+	<description>CRUD API REST para e armazenamento de dados de alunos de uma escola</description>
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.7.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Springdoc OpenAPI para Spring Boot 3. Dependencia para geração de documentação da API, antigo SWAGGER -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<!-- plugin para gerar automaticamente um arquivo json contendo toda a documentação da API deste projeto no formato OpenAPI, antigo SWAGGER -->
+			<plugin>
+				<groupId>org.springdoc</groupId>
+				<artifactId>springdoc-openapi-maven-plugin</artifactId>
+				<version>1.4</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<!-- Por padrão é gerado na pasta target com nome openapi.json. -->
+				<configuration>
+					<!-- Alterando diretório e nome de arquivo -->
+					<!-- link utilizado como fonte para geração do arquivo com a documentação -->
+					<apiDocsUrl>http://localhost:8080/v3/api-docs</apiDocsUrl>
+					<!-- Define o diretório de saída customizado para o arquivo OpenAPI -->
+					<outputDir>${project.basedir}/src/main/resources/openapi-docs</outputDir>
+					<!-- Define o nome de saída customizado para o arquivo OpenAPI. -->
+					<outputFileName>api-specification.json</outputFileName>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>
