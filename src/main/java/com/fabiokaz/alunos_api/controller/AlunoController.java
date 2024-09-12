@@ -1,6 +1,7 @@
 package com.fabiokaz.alunos_api.controller;
 
 import com.fabiokaz.alunos_api.dto.AlunoDTO;
+import com.fabiokaz.alunos_api.exception.ForbiddenException;
 import com.fabiokaz.alunos_api.exception.ResourceFoundException;
 import com.fabiokaz.alunos_api.exception.ResourceNotFoundException;
 import com.fabiokaz.alunos_api.service.AlunoService;
@@ -25,6 +26,8 @@ public class AlunoController {
             return new ResponseEntity<>(alunoResponse, HttpStatus.CREATED);
         } catch (ResourceFoundException e) {
             return ResponseEntity.status(HttpStatus.FOUND).body(e.getMessage());
+        } catch (ForbiddenException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
         }
     }
 

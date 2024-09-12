@@ -1,6 +1,7 @@
 package com.fabiokaz.alunos_api.service;
 
 import com.fabiokaz.alunos_api.dto.AlunoDTO;
+import com.fabiokaz.alunos_api.exception.ForbiddenException;
 import com.fabiokaz.alunos_api.exception.ResourceFoundException;
 import com.fabiokaz.alunos_api.exception.ResourceNotFoundException;
 import com.fabiokaz.alunos_api.model.Aluno;
@@ -17,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AlunoService {
@@ -41,6 +41,11 @@ public class AlunoService {
         if(alunoRepository.findByAlunoId(alunoDTO.getAlunoId()).isPresent()){
             throw new ResourceFoundException("Aluno já cadastrado com ID: " + alunoDTO.getAlunoId());
         }
+
+        if(alunoRepository.count() >= 10){
+            throw new ForbiddenException("Você pode cadastrar no máximo 10 alunos. Desculpe pelo inconveniente. ");
+        }
+
         this.aluno = AlunoMapperUtil.dtoToAluno(alunoDTO);
         return this.persistAlunoDTO(alunoDTO);
     }
