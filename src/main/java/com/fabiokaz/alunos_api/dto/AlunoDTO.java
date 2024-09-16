@@ -3,6 +3,8 @@ package com.fabiokaz.alunos_api.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 
+import java.util.StringJoiner;
+
 public class AlunoDTO {
 
     // alunoId, nome, idade, notaPrimeiroSemestre, notaSegundoSemest, nomeProfessor, numeroSala
@@ -107,6 +109,19 @@ public class AlunoDTO {
 
     public void setNumeroSala(Integer numeroSala) {
         this.numeroSala = numeroSala;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", AlunoDTO.class.getSimpleName() + "[", "]")
+                .add("alunoId=" + alunoId)
+                .add("nome='" + nome + "'")
+                .add("idade=" + idade)
+                .add("notaPrimeiroSemestre=" + notaPrimeiroSemestre)
+                .add("notaSegundoSemestre=" + notaSegundoSemestre)
+                .add("nomeProfessor='" + nomeProfessor + "'")
+                .add("numeroSala=" + numeroSala)
+                .toString();
     }
 }
 
