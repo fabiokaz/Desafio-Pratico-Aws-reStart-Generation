@@ -31,6 +31,8 @@ public class AlunoDTO {
     @NotNull(message = "A nota do primeiro semestre é obrigatória")
     @DecimalMin(value = "0.0", message = "A nota do primeiro semestre deve ser maior ou igual a 0.0")
     @DecimalMax(value = "10.0", message = "A nota do primeiro semestre deve ser menor ou igual a 10.0")
+    @Min(value = 0)
+    @Max(value = 10)
     @Digits(integer = 2, fraction = 1, message = "O valor deve ter no máximo 2 dígitos inteiros e 1 dígito decimal")
     @Schema(example = "9.50")
     private Double notaPrimeiroSemestre;
@@ -38,6 +40,8 @@ public class AlunoDTO {
     @NotNull(message = "A nota do segundo semestre é obrigatória")
     @DecimalMin(value = "0.0", message = "A nota do segundo semestre deve ser maior ou igual a 0.0")
     @DecimalMax(value = "10.0", message = "A nota do segundo semestre deve ser menor ou igual a 10.0")
+    @Min(value = 0)
+    @Max(value = 10)
     @Digits(integer = 2, fraction = 1, message = "O valor deve ter no máximo 2 dígitos inteiros e 1 dígito decimal")
     @Schema(example = "8.60")
     private Double notaSegundoSemestre;
